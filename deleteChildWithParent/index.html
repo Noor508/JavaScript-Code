@@ -9,24 +9,11 @@
 
     <title>JavaScript Practice</title>
     
-    <script>
-        function Main() {
-            var l = document.getElementById("lnkDeleteme");
-            l.onclick = function() {
-                var cont = document.getElementById('mydiv');
-                cont.removeChild(this);
-            };
-             
-           ; var p = document.getElementById("lnkmyParent");
-            p.onclick = function() {
-                var f = document.getElementById("frm");
-                f.removeChild(this.parentNode)
-            };
-        }
-    </script>
 </head>
 
 <body onload="Main()">
+    <script src="scripts.js"></script>
+
     <h1>
         How to delete child element by parent element?
     </h1>
