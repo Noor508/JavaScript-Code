@@ -19,6 +19,8 @@ document.getElementById('btn1').onclick = function() {
 
     // Push the object to the array
     objArray.push(obj);
+    alert('object added'); 
+
 
     // Clear the input fields
     document.getElementById('txtID').value = '';
