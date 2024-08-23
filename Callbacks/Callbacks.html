@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callbacks</title>
+    <script>
+        function sum(a,b){
+            console.log("Sum of two values :" , a+b);
+        }
+
+        function subtract(a,b)
+        {
+            console.log("Sutraction of two values", b-a);
+        }
+
+        function product(a,b)
+        {
+            console.log("product", a*b);
+        }
+        function division(a,b)
+        {
+            if(b!=0)
+        {
+            console.log( "division" , a/b);
+
+        }
+        else
+        {
+            console.log("not divisible")
+        }
+        }
+        function calculator(a , b , sumCallbacks, subCallbacks, product , division){
+            console.log("I am calculator function taking sum function as a callbacks")
+            sumCallbacks(a,b);
+            subCallbacks(a,b);
+            product(a,b);
+            division(a,b);
+        }
+        calculator(5,3, sum,subtract,product,division)
+      //  calculator(5,3, subtract) you have to pass 4 arguments
+
+    </script>
+</head>
+<body>
+    <h1>
+        Callbacks
+    </h1>
+    <ol>
+        <li>
+            Pass a function to another function as a argument.
+        </li>
+    </ol>
+    <h2>
+        Syntax
+    </h2>
+
+    <pre>
+        function sum(a,b){
+            console.log(a+b);
+        }
+
+        function Calculator ( a,b , sum){ // not use () in fucntion arguments
+            sum(a,b); 
+        }
+    </pre>
+</body>
+</html>

@@ -5,7 +5,7 @@ function Main() {
         cont.removeChild(this);
     };
      
-   ; var p = document.getElementById("lnkmyParent");
+    var p = document.getElementById("lnkmyParent");
     p.onclick = function() {
         var f = document.getElementById("frm");
         f.removeChild(this.parentNode)

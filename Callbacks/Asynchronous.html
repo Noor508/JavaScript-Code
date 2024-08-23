@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous in JS</title>
+    <script>
+        console.log("Asynchronous practical example")
+        setTimeout(function(){ // it will take time of 2 sec for execution
+            console.log("Execute me after 2 seconds because i a setTimeout")
+        },2000) // 2s = 2000ms
+        console.log("Execute me before setTimeout . I can't wait because I am special")
+    </script>
+</head>
+<body>
+    <h1>
+        Asynchronous in JS
+    </h1>
+    <p>
+        <ol>
+            <li>
+                Replacement of Synchronus task .
+            </li>
+            <li>
+                Each instrcutions execute independently instead of waiting for execution of previous ones.
+            </li>
+            <li>
+                If some instrcutions take more time in execution , control will be jump to next instrcution that require less time to execute and go back to time taking instrcution later on.
+            </li>
+            <li>
+                no waiting time
+            </li>
+            
+        </ol>
+    </p>
+
+    <h2>Real-World Scenario</h2>
+    <p>If a person has a reference from a working employee of NADRA, the officer will deal with them immediately without following any token number. This person does not have to wait in the queue, and their waiting time is effectively zero. This is similar to asynchronous processing, where certain tasks can be prioritized or handled independently, without waiting for others to finish.</p>
+    
+</body>
+</html>
