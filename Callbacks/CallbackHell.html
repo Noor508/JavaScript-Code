@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Callback Hell</title>
+    <script>
+      let words = document.querySelectorAll(".word");
+
+      const animateAll = (animate) => {
+        setTimeout(() => {
+          animate(words[0]);
+          setTimeout(() => {
+            animate(words[1]);
+            setTimeout(() => {
+              animate(words[2]);
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      };
+
+      const animate = (word) => {
+        word.classList.add("animate");
+      };
+
+      animateAll(animate);
+    </script>
+  </head>
+  <body style="background-color: rgba(23, 23, 23, 0.067)">
+    <h1>Callback Hell</h1>
+    <ol>
+      <li>
+        Nested Callbacks stacked below one another forming a pyramid structure .
+        (pyramid of Doom).
+      </li>
+      <li>
+        This style of programmimg becomes difficult to understand & manage .
+      </li>
+      <li>
+        if we want to run our instructions with some individual delay then we
+        will use it.
+      </li>
+    </ol>
+    <h2>Syntax</h2>
+    <pre>
+        asyncFunction1(() => {
+            asyncFunction2(() => {
+                asyncFunction3(() => {
+                    // and so on...
+                });
+            });
+        });
+        
+    </pre>
+    <h2>real-world scenario</h2>
+    <p>
+      We have to get data from our database . we have to get data and verify
+      from database. like we have to login in instagram . firstly enter username
+      and password . now check only username first from database if it exists
+      then verify password.
+    </p>
+  </body>
+</html>

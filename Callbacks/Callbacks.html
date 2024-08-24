@@ -4,65 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Callbacks</title>
+    <style>
+        /* Style for h1 to position image in the right corner */
+        h1 {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style for the image */
+        #callbackImage {
+            max-width: 20%; /* Adjust size as needed */
+            height: auto;
+            margin-left: 20px;
+        }
+    </style>
     <script>
-        function sum(a,b){
-            console.log("Sum of two values :" , a+b);
+        function sum(a, b) {
+            console.log("Sum of two values :", a + b);
         }
 
-        function subtract(a,b)
-        {
-            console.log("Sutraction of two values", b-a);
+        function subtract(a, b) {
+            console.log("Subtraction of two values", b - a);
         }
 
-        function product(a,b)
-        {
-            console.log("product", a*b);
+        function product(a, b) {
+            console.log("Product", a * b);
         }
-        function division(a,b)
-        {
-            if(b!=0)
-        {
-            console.log( "division" , a/b);
 
+        function division(a, b) {
+            if (b != 0) {
+                console.log("Division", a / b);
+            } else {
+                console.log("Not divisible");
+            }
         }
-        else
-        {
-            console.log("not divisible")
-        }
-        }
-        function calculator(a , b , sumCallbacks, subCallbacks, product , division){
-            console.log("I am calculator function taking sum function as a callbacks")
-            sumCallbacks(a,b);
-            subCallbacks(a,b);
-            product(a,b);
-            division(a,b);
-        }
-        calculator(5,3, sum,subtract,product,division)
-      //  calculator(5,3, subtract) you have to pass 4 arguments
 
+        function calculator(a, b, sumCallbacks, subCallbacks, product, division) {
+            console.log("I am calculator function taking sum function as a callback");
+            sumCallbacks(a, b);
+            subCallbacks(a, b);
+            product(a, b);
+            division(a, b);
+        }
+
+        calculator(5, 3, sum, subtract, product, division);
     </script>
 </head>
 <body>
     <h1>
         Callbacks
+        <img id="callbackImage" src="img.jpg" alt="Callbacks Image">
     </h1>
+    
     <ol>
-        <li>
-            Pass a function to another function as a argument.
-        </li>
+        <li>Pass a function to another function as an argument.</li>
+        <li>It is used for managing asynchronous tasks.</li>
+        <li>It is not in use in modern JavaScript due to the callback hell problem. <b>Promises</b> are used in replacement of callbacks.</li>
+        <li><code>setTimeout</code> takes a callback as an argument: <code>setTimeout(function, time)</code>.</li>
     </ol>
-    <h2>
-        Syntax
-    </h2>
-
+    
+    <h2>Syntax</h2>
     <pre>
         function sum(a,b){
             console.log(a+b);
         }
 
-        function Calculator ( a,b , sum){ // not use () in fucntion arguments
+        function Calculator ( a,b , sum){ // Do not use () in function arguments
             sum(a,b); 
         }
     </pre>
+    
+    <h2>Uses</h2>
+    <ol>
+        <li>When we use API calling like HTTP Request to server, we don’t want to freeze your application while waiting for the server's response.</li>
+        <li>File handling in read operations.</li>
+        <li>Event handling like <code>onclick</code>, <code>onLoad</code>.</li>
+        <li>Timer like <code>setTimeout</code>, <code>setInterval</code>.</li>
+    </ol>
+    
+    <h2>Advantages</h2>
+    <ul>
+        <li>
+            <b>Asynchronous Code Execution</b>: Allows multiple operations to happen in parallel.
+        </li>
+        <li>
+            <b>Modularity</b>: Helps in writing modular code where logic is separated into different functions, making the code cleaner and easier to maintain.
+        </li>
+        <li>
+            <b>Event-Driven Programming</b>: Callbacks are central to event-driven programming, making it possible to react to user interactions or other events in real-time.
+        </li>
+    </ul>
+    
+    <h2>Disadvantages</h2>
+    <ul>
+        <li>
+            <b>Callback Hell</b>
+            <ul>
+                <li>Nested callbacks</li>
+                <li>Difficult to read and maintain</li>
+                <li>Error handling is difficult</li>
+            </ul>
+        </li>
+    </ul>
+    
 </body>
 </html>
