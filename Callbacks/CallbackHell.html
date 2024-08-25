@@ -25,6 +25,44 @@
 
       animateAll(animate);
     </script>
+    <style>
+      .code-container {
+          position: relative;
+          margin: 20px 0;
+          background-color: #f4f4f4;
+          border: 1px solid #ddd;
+          padding: 10px;
+          border-radius: 5px;
+      }
+
+      pre {
+          margin: 0;
+          padding: 10px;
+          background-color: #272822;
+          color: #f8f8f2;
+          border-radius: 5px;
+          overflow-x: auto;
+      }
+
+      .copy-button {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      .copy-button:active {
+          background-color: #0056b3;
+      }
+      .comment {
+          color: #6a9955; /* Green color for comments */
+      }
+  </style>
   </head>
   <body style="background-color: rgba(23, 23, 23, 0.067)">
     <h1>Callback Hell</h1>
@@ -42,16 +80,19 @@
       </li>
     </ol>
     <h2>Syntax</h2>
-    <pre>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard('code1')">Copy</button>
+      <pre id="code1">
         asyncFunction1(() => {
-            asyncFunction2(() => {
-                asyncFunction3(() => {
-                    // and so on...
-                });
-            });
-        });
-        
-    </pre>
+          asyncFunction2(() => {
+              asyncFunction3(() => {
+                  // and so on...
+              });
+          });
+      });
+      </pre>
+  </div>
+  
     <h2>real-world scenario</h2>
     <p>
       We have to get data from our database . we have to get data and verify
