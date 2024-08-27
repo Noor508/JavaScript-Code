@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promise chaning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .code-container {
+            background-color: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .comment {
+            color: #6a9955;
+        }
+    </style>
+    <script>
+      new Promise(function (resolve, reject) {
+        setTimeout(() => resolve(1), 1000);
+      })
+        .then(function (result) {
+          alert(result); // 1
+
+          return new Promise((resolve, reject) => {
+            // (*)
+            setTimeout(() => resolve(result * 2), 1000);
+          });
+        })
+        .then(function (result) {
+          // (**)
+
+          alert(result); // 2
+
+          return new Promise((resolve, reject) => {
+            setTimeout(() => resolve(result * 2), 1000);
+          });
+        })
+        .then(function (result) {
+          alert(result); // 4
+        });
+    </script>
+  </head>
+  <body>
+   
+        <h1>Promise Chaining in JavaScript</h1>
+    
+        <p>Promise chaining is a technique in JavaScript that allows you to perform a sequence of asynchronous operations, where each operation starts only after the previous one has completed.</p>
+        <p>This is achieved by returning a new promise from the <code>.then()</code> method, which can be further chained with more <code>.then()</code> or <code>.catch()</code> calls.</p>
+    
+        <h2>Key Concepts:</h2>
+        <ul>
+            <li><strong>Sequential Execution:</strong> Each <code>.then()</code> receives the result of the previous <code>.then()</code> or promise, allowing for operations to be executed in order.</li>
+            <li><strong>Error Handling:</strong> Errors in any part of the chain can be caught by a <code>.catch()</code> block, which handles any rejected promises within the chain.</li>
+        </ul>
+    
+        <h2>Example of Promise Chaining:</h2>
+        <div class="code-container">
+    <pre><code>
+    // A function that returns a promise which resolves after a given time
+    function waitFor(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    waitFor(1000)  <span class="comment">// First asynchronous operation</span>
+      .then(() => {
+        console.log("1 second passed");
+        return waitFor(2000);  <span class="comment">// Second asynchronous operation</span>
+      })
+      .then(() => {
+        console.log("2 more seconds passed");
+        return "All done!";  <span class="comment">// Final synchronous operation</span>
+      })
+      .then(message => {
+        console.log(message);  <span class="comment">// Output: All done!</span>
+      })
+      .catch(error => {
+        console.error("An error occurred:", error);
+      });
+    </code></pre>
+        </div>
+    
+        <h2>Explanation:</h2>
+        <ul>
+            <li><strong>Step 1:</strong> The first promise resolves after 1 second.</li>
+            <li><strong>Step 2:</strong> Once the first promise is resolved, the next <code>.then()</code> is called, and it returns another promise that resolves after 2 more seconds.</li>
+            <li><strong>Step 3:</strong> After the second promise is resolved, the final <code>.then()</code> is called, and the final message is logged.</li>
+        </ul>
+    
+        <h2>Error Handling in Chaining:</h2>
+        <p>If an error occurs at any point in the chain, it will skip all subsequent <code>.then()</code> blocks and go directly to the nearest <code>.catch()</code> block:</p>
+        <div class="code-container">
+    <pre><code>
+    waitFor(1000)
+      .then(() => {
+        console.log("This works!");
+        throw new Error("Oops, something went wrong!");
+      })
+      .then(() => {
+        <span class="comment">// This will be skipped due to the error</span>
+        console.log("This will not be logged.");
+      })
+      .catch(error => {
+        console.error("Caught an error:", error.message);  <span class="comment">// Output: Oops, something went wrong!</span>
+      });
+    </code></pre>
+        </div>
+   
+  </body>
+</html>

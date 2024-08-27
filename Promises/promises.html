@@ -1,173 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Editor with Copy Option</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promises</title>
     <style>
-        .code-container {
-            position: relative;
-            margin: 20px 0;
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-        }
+      .code-container {
+        position: relative;
+        margin: 20px 0;
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+      }
 
-        pre {
-            margin: 0;
-            padding: 10px;
-            background-color: #272822;
-            color: #f8f8f2;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
+      pre {
+        margin: 0;
+        padding: 10px;
+        background-color: #272822;
+        color: #f8f8f2;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
 
-        .copy-button {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+      .copy-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 
-        .copy-button:active {
-            background-color: #0056b3;
-        }
-        .comment {
-            color: #6a9955; /* Green color for comments */
-        }
+      .copy-button:active {
+        background-color: #0056b3;
+      }
+
+      .comment {
+        color: #6a9955;
+        /* Green color for comments */
+      }
     </style>
     <script>
-        function copyToClipboard(codeId) {
-            const codeElement = document.getElementById(codeId);
-            const code = codeElement.innerText;
+      function copyToClipboard(codeId) {
+        const codeElement = document.getElementById(codeId);
+        const code = codeElement.innerText;
 
-            const tempTextArea = document.createElement('textarea');
-            tempTextArea.value = code;
-            document.body.appendChild(tempTextArea);
+        const tempTextArea = document.createElement("textarea");
+        tempTextArea.value = code;
+        document.body.appendChild(tempTextArea);
 
-            tempTextArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(tempTextArea);
+        tempTextArea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextArea);
 
-            alert('Code copied to clipboard!');
+        alert("Code copied to clipboard!");
+      }
+
+      function myDisplayer(some) {
+        document.getElementById("demo").innerHTML = some;
+      }
+
+      let myPromise = new Promise(function (myResolve, myReject) {
+        let x = 0;
+
+        // some code (try to change x to 5)
+
+        if (x == 0) {
+          myResolve("OK");
+        } else {
+          myReject("Error");
         }
+      });
 
+      myPromise.then(
+        function (value) {
+          myDisplayer(value);
+        },
+        function (error) {
+          myDisplayer(error);
+        }
+      );
+
+      
+        
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
+    <h1>JavaScript Promise Object</h1>
+    <h2>The then() Method</h2>
+    <p id="demo"></p>
+
     <h1>Promises</h1>
     <ul>
-        <li>
-            Solution for callbacks hell
-        </li>
-        <li>
-            As an object in JS
-        </li>
-        <li>
-            Here’s a rewritten version of your statement:
-
-            "When an API call is made, it returns a Promise. We don’t need to create the ourselves."
-        </li>
-        <li>
-            Two callbacks in it: resolve and reject
-        </li>
-        <li>
-            How can we get a response from the promise that is sent by the API? We can access it by using
-            <b>.then()</b> in case the API promise is fulfilled, then we get it by using .then function; otherwise, catch
-            the rejected error by using <b>.catch()</b>.
-        </li>
+      <li>Solution for callbacks hell</li>
+      <li>As an object in JS</li>
+      <li>
+        "When an API call is made, it returns a Promise. We don’t need to create
+        the Promise ourselves."
+      </li>
+      <li>Two callbacks in it: resolve and reject</li>
+      <li>
+        How can we get a response from the promise that is sent by the API? We
+        can access it by using <b>.then()</b> in case the API promise is
+        fulfilled, then we get it by using .then function; otherwise, catch the
+        rejected error by using <b>.catch()</b>.
+      </li>
     </ul>
 
-    <h2>Promise.then()</h2>
-    <p>
-        Promise.then() takes one argument, a callback for success, and that argument returns a message that is passed
-        from the resolve function.
-        <br>
-        
-        <div class="code-container">
-            <button class="copy-button" onclick="copyToClipboard('code1')">Copy</button>
-            <pre id="code1">
-        promise.then(res) 
-        { 
-            console.log("promise is resolved", res)
-        }
-            </pre>
-
-
-
-        </div>
-    </p>
-
-    <h2>Promise.catch()</h2>
-    <p>
-        To catch our error given by promise.
-    </p>
-
-    <h2>How to create promise</h2>
+    <h2>How to create a promise</h2>
     <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard('code1')">Copy</button>
-        <pre id="code1">
+      <button class="copy-button" onclick="copyToClipboard('code1')">
+        Copy
+      </button>
+      <pre id="code1">
 let myPromise = new Promise(function(myResolve, myReject) {
-    myResolve(); // when successful
-    myReject();  // when error
+    myResolve("Message");  <span class="comment">//  when successful</span>
+    myReject("error");  <span class="comment">//  when error </span>
 });
         </pre>
     </div>
 
+    <h2>Promise.then()</h2>
+    <p>
+      Promise.then() takes one argument, a callback for success, and that
+      argument returns a message that is passed from the resolve function.
+    </p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard('code2')">
+        Copy
+      </button>
+      <pre id="code2">
+promise.then(res) 
+{ 
+    console.log("promise is resolved", res);  <span class="comment">// res stores that resolve message pass from promise in resolve(message)</span>
+}
+        </pre>
+    </div>
+
+    <h2>Promise.catch()</h2>
+    <p>To catch our error given by promise.</p>
+    <div class="code-container">
+      <button class="copy-button" onclick="copyToClipboard('code3')">
+        Copy
+      </button>
+      <pre id="code3">
+promise.catch(err) 
+{ 
+    console.log("promise is rejected", err);  <span class="comment">// err stores that reject message pass from promise in reject(error)</span>
+}
+        </pre>
+    </div>
+
     <h2>States of Promise</h2>
-    There are 3 states of Promise.
+    <p>There are 3 states of Promise.</p>
     <ol>
-        <li>
-            <b>Pending</b>: when the promise doesn't call resolve or reject function, then it is undefined
-        </li>
-        <li>
-            <b>Fulfilled:</b> when the promise is resolved
-        </li>
-        <li>
-            <b>Rejected</b>: when the promise has some error, and it becomes rejected.
-        </li>
+      <li>
+        <b>Pending</b>: when the promise doesn't call resolve or reject
+        function, then it is undefined
+      </li>
+      <li><b>Fulfilled:</b> when the promise is resolved</li>
+      <li>
+        <b>Rejected</b>: when the promise has some error, and it becomes
+        rejected.
+      </li>
     </ol>
 
     <h2>Promise object attributes</h2>
-    Whenever you write a promise in the console, it will return the whole promise object, which has 3 attributes.
+    <p>
+      Whenever you write a promise in the console, it will return the whole
+      promise object, which has 3 attributes.
+    </p>
     <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard('code1')">Copy</button>
-        <pre id="code1">
-            <p>Promise &#123;&lt;state&gt;: 123&#125;</p>
-            [[Prototype]] : Promise
-                [[PromiseState]]: pending/fulfilled/rejected  <span class="comment">// the actual state of the promise will be shown there</span>.
-                [[PromiseResult]]: message  <span class="comment">// message that we pass to resolve/reject function.</span>
-            </p>
+      <button class="copy-button" onclick="copyToClipboard('code4')">
+        Copy
+      </button>
+      <pre id="code4">
+Promise &#123;&lt;state&gt;: 123&#125;
+[[Prototype]]: Promise
+[[PromiseState]]: pending/fulfilled/rejected  <span class="comment">// the actual state of the promise will be shown there</span>.
+[[PromiseResult]]: message  <span class="comment">// message that we pass to resolve/reject function.</span>
         </pre>
     </div>
-    Example :
-    Below is my promise in my script tag:
+
+    <p>Example: Below is my promise in my script tag:</p>
     <div class="code-container">
-        <button class="copy-button" onclick="copyToClipboard('code2')">Copy</button>
-        <pre id="code2">
-let promise = new Promise((resolve, reject)=>{
+      <button class="copy-button" onclick="copyToClipboard('code5')">
+        Copy
+      </button>
+      <pre id="code5">
+let promise = new Promise((resolve, reject) => {
     console.log("this is a promise");
     
     resolve(123);
     console.log("Now I am fulfilled and resolved");
 });
 
-<span class="comment">// when i write promise on console , result will be like that.
-</span>
+// when i write promise on console, result will be like that.
 Promise {&lt;fulfilled&gt;: 123}
 [[Prototype]]: Promise
 [[PromiseState]]: "fulfilled"
 [[PromiseResult]]: 123
-        </pre>
+        </pre
+      >
     </div>
-</body>
 
+    <div id="demo"></div>
+  </body>
 </html>
